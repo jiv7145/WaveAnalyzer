@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,15 +16,20 @@ using System.Windows.Forms;
 namespace WaveAnalyzer {
     public partial class Form1: Form {
         Graphics gPanel1;
+        // Sample data
         float[] output;
+        // Result of dft (combine real and imaginary)
+        Complex[] output2;
 
         public Form1() {
             InitializeComponent();
             gPanel1 = panel1.CreateGraphics();
             ReadWavFile("./sample.wav", out float[] L, out float[] R);
             output = L;
-        }
 
+            // Apply dft to samples and store resulting complex numbers into an array of complex numbers output2
+            output2 = DFT(output);
+        }
 
         private void groupBox1_Enter(object sender, EventArgs e) {
 
@@ -33,32 +39,25 @@ namespace WaveAnalyzer {
 
         }
 
-        private void chart1_Click(object sender, EventArgs e) {
-
-        }
-
-        private void chart2_Click(object sender, EventArgs e) {
-
-        }
-
+        // Method to draw out the corresponding graph
         private void panel1_Paint(object sender, PaintEventArgs e) {
             
-            Pen pen = new Pen(Brushes.Blue, 0.1F);
+            Pen pen = new Pen(Brushes.Red, 0.1F);
             float x1 = 0;
             float y1 = 70;
 
             float y2 = 0;
 
-            //for (float x2 = 0; x2 < panel1.Width; x2 += 1F) {
-            //    //y2 = (float)Complex.Pow(Math.Sin(x), x).Real;
-            //    int i = 0;
-            //    y2 = output[i] * 1000 + 100;
+            /*for (float x2 = 0; x2 < panel1.Width; x2 += 1F) {
+                //y2 = (float)Complex.Pow(Math.Sin(x), x).Real;
+                int i = 0;
+                y2 = output[i] * 1000 + 100;
 
-            //    gPanel1.DrawLine(pen, x1, y1, x2, y2);
-            //    x1 = x2;
-            //    y1 = y2;
-            //    i++;
-            //}
+                gPanel1.DrawLine(pen, x1, y1, x2, y2);
+                x1 = x2;
+                y1 = y2;
+                i++;
+            }*/
             for (int x2 = 0; x2 < panel1.Width; x2+=1) {
                 y2 = output[x2] * 5000 + 150;
 
@@ -70,10 +69,7 @@ namespace WaveAnalyzer {
 
         }
 
-
-
-
-
+        // Method to read the wav file and return the samples into L and R if there is 2 channels
         public static bool ReadWavFile(string filename, out float[] L, out float[] R) {
             L = R = null;
 
@@ -170,5 +166,75 @@ namespace WaveAnalyzer {
         private void trackBar1_Scroll(object sender, EventArgs e) {
             //int val = trackBar1.Value;
         }
+
+        private void panel2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public Complex[] DFT(float[] x)
+        {
+            int N = x.Length; // Number of samples
+            Complex[] X = new Complex[N];
+
+            for (int k = 0; k < N; k++)
+            {
+                X[k] = 0;
+
+                for (int n = 0; n < N; n++)
+                {
+                    X[k] += x[n] * Complex.Exp(-Complex.ImaginaryOne * 2 * Math.PI * (k * n) / Convert.ToDouble(N));
+                }
+
+                X[k] = X[k] / N;
+
+            }
+
+            return X;
+        }
+
+        public Double[] iDFT(Complex[] X)
+        {
+            int N = X.Length; // Number of spectrum elements
+            Double[] x = new Double[N];
+
+            for (int n = 0; n < N; n++)
+            {
+                Complex sum = 0;
+
+                for (int k = 0; k < N; k++)
+                {
+                    sum += X[k] * Complex.Exp(Complex.ImaginaryOne * 2 * Math.PI * (k * n) / Convert.ToDouble(N));
+                }
+
+                x[n] = sum.Real; // As a result we expect only real values (if our calculations are correct imaginary values should be equal or close to zero)
+            }
+            return x;
+        }
+
+        // IDK IF THIS IS WHERE BUT BELOW IS MY "IN-PROGRESS" (NOT COMPLETED) CODE OF DISPLAYING THE FREQ DOMAIN
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            double amplitude;
+
+            for (int i=0; i<output2.Length; ++i)
+            {
+                if (output2[i].Real != 0 && output2[i].Imaginary != 0)
+                {
+                    amplitude = Math.Sqrt(Math.Pow(output2[i].Real, 2) + Math.Pow(output2[i].Imaginary, 2));
+                    
+                    // i is the frequncy (box) and amplitude is the amplitude of that frequency
+
+                }
+            }
+
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
+
 }
