@@ -16,3 +16,12 @@ C:\Users\bestd\Desktop\WaveAnalyzer\obj\Debug\WaveAnalyzer.Properties.Resources.
 C:\Users\bestd\Desktop\WaveAnalyzer\obj\Debug\WaveAnalyzer.csproj.GenerateResource.cache
 C:\Users\bestd\Desktop\WaveAnalyzer\obj\Debug\WaveAnalyzer.exe
 C:\Users\bestd\Desktop\WaveAnalyzer\obj\Debug\WaveAnalyzer.pdb
+C:\Users\Eric\Desktop\WaveAnalyzer-eric-s-branch\WaveAnalyzer-eric-s-branch\bin\Debug\WaveAnalyzer.exe.config
+C:\Users\Eric\Desktop\WaveAnalyzer-eric-s-branch\WaveAnalyzer-eric-s-branch\bin\Debug\WaveAnalyzer.exe
+C:\Users\Eric\Desktop\WaveAnalyzer-eric-s-branch\WaveAnalyzer-eric-s-branch\bin\Debug\WaveAnalyzer.pdb
+C:\Users\Eric\Desktop\WaveAnalyzer-eric-s-branch\WaveAnalyzer-eric-s-branch\obj\Debug\WaveAnalyzer.csprojAssemblyReference.cache
+C:\Users\Eric\Desktop\WaveAnalyzer-eric-s-branch\WaveAnalyzer-eric-s-branch\obj\Debug\WaveAnalyzer.Form1.resources
+C:\Users\Eric\Desktop\WaveAnalyzer-eric-s-branch\WaveAnalyzer-eric-s-branch\obj\Debug\WaveAnalyzer.Properties.Resources.resources
+C:\Users\Eric\Desktop\WaveAnalyzer-eric-s-branch\WaveAnalyzer-eric-s-branch\obj\Debug\WaveAnalyzer.csproj.GenerateResource.cache
+C:\Users\Eric\Desktop\WaveAnalyzer-eric-s-branch\WaveAnalyzer-eric-s-branch\obj\Debug\WaveAnalyzer.exe
+C:\Users\Eric\Desktop\WaveAnalyzer-eric-s-branch\WaveAnalyzer-eric-s-branch\obj\Debug\WaveAnalyzer.pdb
